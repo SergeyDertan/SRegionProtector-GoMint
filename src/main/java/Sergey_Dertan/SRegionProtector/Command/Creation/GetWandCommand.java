@@ -1,6 +1,7 @@
 package Sergey_Dertan.SRegionProtector.Command.Creation;
 
 import Sergey_Dertan.SRegionProtector.Command.SRegionProtectorCommand;
+import io.gomint.GoMint;
 import io.gomint.command.CommandOutput;
 import io.gomint.command.CommandSender;
 import io.gomint.server.entity.EntityPlayer;
@@ -12,8 +13,6 @@ public final class GetWandCommand extends SRegionProtectorCommand {
 
     public GetWandCommand() {
         super("wand");
-
-        //this.setCommandParameters(new Object2ObjectArrayMap<>());
     }
 
     @Override
@@ -27,7 +26,7 @@ public final class GetWandCommand extends SRegionProtectorCommand {
             this.messenger.sendMessage(sender, "command.wand.in-game");
             return out;
         }
-        ((EntityPlayer) sender).getInventory().addItem(new ItemWoodenAxe()); //TODO
+        ((EntityPlayer) sender).getInventory().addItem(GoMint.instance().createItemStack(ItemWoodenAxe.class, 1)); //TODO
         this.messenger.sendMessage(sender, "command.wand.wand-given");
         return out;
     }

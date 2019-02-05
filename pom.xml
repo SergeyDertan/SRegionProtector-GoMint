@@ -42,7 +42,7 @@
     </profiles>
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/SergeyDertan/PrivateRegionProtector/issues</url>
+        <url>https://github.com/SergeyDertan/PrivateRegionProtector-GoMint/issues</url>
     </issueManagement>
     <repositories>
         <repository>
@@ -152,20 +152,11 @@
             </plugin>
         </plugins>
         <resources>
-            <!--<resource>
-                <targetPath>.</targetPath>
-                <directory>${basedir}/src/main/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>plugin.yml</include>
-                </includes>
-            </resource>-->
             <resource>
                 <targetPath>resources</targetPath>
                 <directory>${basedir}/src/main/resources</directory>
                 <filtering>false</filtering>
                 <includes>
-                    <include>messages.yml</include>
                     <include>mysql.yml</include>
                     <include>config.yml</include>
                     <include>region-settings.yml</include>

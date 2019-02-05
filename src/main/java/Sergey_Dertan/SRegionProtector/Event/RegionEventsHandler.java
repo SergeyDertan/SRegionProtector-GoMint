@@ -21,7 +21,6 @@ import io.gomint.event.player.PlayerMoveEvent;
 import io.gomint.event.world.BlockBreakEvent;
 import io.gomint.event.world.BlockPlaceEvent;
 import io.gomint.math.Location;
-import io.gomint.math.Vector;
 import io.gomint.world.block.*;
 
 import java.util.Iterator;
@@ -85,19 +84,6 @@ public final class RegionEventsHandler implements EventListener {
         }
     }
 
-    //mob spawn flag //TODO
-    /*@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
-    public void entitySpawn(EntitySpawnEvent e) {
-        if (!(e.getEntity() instanceof EntityMob) && !(e.getEntity() instanceof EntityAnimal) && !(e.getEntity() instanceof EntityWaterAnimal)) return;
-        this.handleEvent(RegionFlags.FLAG_MOB_SPAWN, e.getPosition(), null, e, false, false);
-    }*/
-
-    //leaves decay flag //TODO remove
-    /*@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
-    public void leavesDecay(LeavesDecayEvent e) {
-        this.handleEvent(RegionFlags.FLAG_LEAVES_DECAY, e.getBlock(), null, e);
-    }*/
-
     //explode (creeper & tnt explode) & explode block break flags
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void entityExplode(EntityExplodeEvent e) {
@@ -154,12 +140,6 @@ public final class RegionEventsHandler implements EventListener {
         this.handleEvent(RegionFlags.FLAG_HEALTH_REGEN, e.getEntity().getLocation(), (EntityPlayer) e.getEntity(), e, true, true);
     }
 
-    //redstone flag //TODO remove
-    /*@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
-    public void redstoneUpdate(RedstoneUpdateEvent e) {
-        this.handleEvent(RegionFlags.FLAG_REDSTONE, e.getBlock(), null, e);
-    }*/
-
     //ender pearl flag
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void playerTeleport(EntityTeleportEvent e) {
@@ -167,33 +147,21 @@ public final class RegionEventsHandler implements EventListener {
         this.handleEvent(RegionFlags.FLAG_ENDER_PEARL, e.getTo(), (EntityPlayer) e.getEntity(), e, true, true);
     }
 
-    //liquid flow event //TODO remove
-    /*@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
-    public void liquidFlow(LiquidFlowEvent e) {
-        Block block = e.getSource();
-        if (!(block instanceof BlockLava) && !(block instanceof BlockWater)) return;
-        this.handleEvent(RegionFlags.FLAG_LIQUID_FLOW, e.getTo(), null, e, false, false, e.getSource());
-    }*/
-
-    private void handleEvent(int flag, Location pos, EntityPlayer player, CancellableEvent ev, boolean mustBeMember, boolean checkPerm, Vector additionalPos) {
+    private void handleEvent(int flag, Location pos, EntityPlayer player, CancellableEvent ev, boolean mustBeMember, boolean checkPerm) {
         if (!this.flagsStatus[flag]) return;
         if (checkPerm && (player != null && player.hasPermission("sregionprotector.admin"))) return;
         Chunk chunk = this.chunkManager.getChunk((long) pos.getX() >> 4, (long) pos.getZ() >> 4, pos.getWorld().getWorldName(), false, false);
         if (chunk == null) return;
         for (Region region : chunk.getRegions()) {
             if (!region.getFlagState(flag)) continue;
-            if (!region.isVectorInside(pos) || (additionalPos != null && region.isVectorInside(additionalPos)) || (mustBeMember && (player != null && region.isLivesIn(player.getName())))) continue;
+            if (!region.isVectorInside(pos) || (mustBeMember && (player != null && region.isLivesIn(player.getName())))) continue;
             ev.setCancelled(true);
             if (player != null && this.needMessage[flag]) Messenger.getInstance().sendMessage((CommandSender) player, "region.protected");
             break;
         }
     }
 
-    private void handleEvent(int flag, Location pos, EntityPlayer player, CancellableEvent ev, boolean mustBeMember, boolean checkPerm) {
-        this.handleEvent(flag, pos, player, ev, mustBeMember, checkPerm, null);
-    }
-
     private void handleEvent(int flag, Location pos, EntityPlayer player, CancellableEvent ev) {
-        this.handleEvent(flag, pos, player, ev, true, true, null);
+        this.handleEvent(flag, pos, player, ev, true, true);
     }
 }

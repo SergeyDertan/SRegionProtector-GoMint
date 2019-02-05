@@ -11,18 +11,14 @@ default-flags:
   heal: false
   invincible: false
   potion-launch: false
-  leaves-decay: false
   item_drop: false
   send_chat: false
   receive_chat: false
   health_regen: false
   mob-damage: false
-  mob-spawn: false
   crops-destroy: true
-  redstone: false
   ender-pearl: false
   explode-block-break: true
-  liquid-flow: true
 need-message:
   move: false
   build: true

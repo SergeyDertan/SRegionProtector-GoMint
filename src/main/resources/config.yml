@@ -27,18 +27,14 @@ active-flags:
   invincible: true
   potion-launch: true
   move: false
-  leaves_decay: false
   item_drop: false
   send_chat: false
   receive_chat: false
   health_regen: false
   mob-damage: false
-  mob-spawn: false
   crops-destroy: true
-  redstone: false
   ender-pearl: false
   explode-block-break: true
-  liquid-flow: true
 # permissions will be created during the plugin loading and have names sregionprotector.region.size.MAX_REGION_SIZE
 # for example, if you have
 # region-sizes:

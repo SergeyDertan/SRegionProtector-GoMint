@@ -200,7 +200,7 @@ public final class SRegionProtectorMain extends Plugin {
     }
 
     private void initEventsHandlers() {
-        this.registerListener(new RegionEventsHandler(this.chunkManager, this.settings.regionSettings.flagsStatus, this.settings.regionSettings.needMessage,getLogger()));
+        this.registerListener(new RegionEventsHandler(this.chunkManager, this.settings.regionSettings.flagsStatus, this.settings.regionSettings.needMessage));
         this.registerListener(new SelectorEventsHandler(this.regionSelector));
     }
 
