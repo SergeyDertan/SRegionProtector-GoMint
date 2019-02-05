@@ -8,8 +8,8 @@
     <artifactId>SRegionProtector</artifactId>
     <version>1.0</version>
     <name>SRegionProtector</name>
-    <description>Region protection plugin for nukkit</description>
-    <url>https://github.com/SergeyDertan/SRegionProtector</url>
+    <description>Region protection plugin for GoMint</description>
+    <url>https://github.com/SergeyDertan/SRegionProtector-GoMint</url>
     <licenses>
         <license>
             <name>GNU GENERAL PUBLIC LICENSE</name>
