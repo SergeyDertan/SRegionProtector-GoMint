@@ -1,8 +1,7 @@
 # SRegionProtector
-SRegionProtector is a nukkit plugin that allows players to protect their regions.
+SRegionProtector is a GoMint plugin that allows players to protect their regions.
 ## Download
-* [NukkitX.com](https://nukkitx.com/resources/sregionprotector.164/)
-* [GoogleDrive](https://drive.google.com/file/d/1yqm1J4Lca2vHLAkM1oK84lFd6TrKFKH8/view?usp=sharing)
+* [GoogleDrive](https://drive.google.com/file/d/1zc-zYi1iIMVQAN8_u6KMuVpi3-lpsdh7/view?usp=sharing)
 ## Features
 * API for another plugins
 * Lots of flags
